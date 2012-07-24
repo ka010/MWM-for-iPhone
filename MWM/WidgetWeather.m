@@ -293,28 +293,29 @@ static CGFloat widgetHeight = 32;
         weatherIcon=[UIImage imageNamed:@"weather_sunny.bmp"];
     }
     
-    [condition drawInRect:CGRectMake(0, 3, 41, 14) withFont:font lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+//    [condition drawInRect:CGRectMake(0, 3, 41, 14) withFont:font lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+//    
+//    CGSize drawingSize = [location sizeWithFont:font constrainedToSize:CGSizeMake(41, 14) lineBreakMode:UILineBreakModeWordWrap];
+//    if (drawingSize.height < 8) {
+//        [location drawInRect:CGRectMake(0, 16 + 7, 41, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
+//    } else {
+//        [location drawInRect:CGRectMake(0, 17, 41, 14) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
+//    }
     
-    CGSize drawingSize = [location sizeWithFont:font constrainedToSize:CGSizeMake(41, 14) lineBreakMode:UILineBreakModeWordWrap];
-    if (drawingSize.height < 8) {
-        [location drawInRect:CGRectMake(0, 16 + 7, 41, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
-    } else {
-        [location drawInRect:CGRectMake(0, 17, 41, 14) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentCenter];
-    }
+    [weatherIcon drawInRect:CGRectMake(36, 4, 24, 24)];
     
-    [weatherIcon drawInRect:CGRectMake(42, 4, 24, 24)];
     if (useCelsius) {
-        [[NSString stringWithFormat:@"%@ C", temp] drawInRect:CGRectMake(65, 1, 31, 16) withFont:largeFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentRight];
+        [[NSString stringWithFormat:@"%@ C", temp] drawInRect:CGRectMake(0, 8, 31, 16) withFont:largeFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentRight];
     } else {
-        [[NSString stringWithFormat:@"%@ F", temp] drawInRect:CGRectMake(65, 1, 31, 16) withFont:largeFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentRight];
+        [[NSString stringWithFormat:@"%@ F", temp] drawInRect:CGRectMake(0, 8, 31, 16) withFont:largeFont lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentRight];
     }
     
     
-    [@"HI:" drawInRect:CGRectMake(69, 16, 32, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentLeft];
-    [high drawInRect:CGRectMake(82, 16, 14, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentRight];
+    [@"HI:" drawInRect:CGRectMake(65, 9, 32, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentLeft];
+    [high drawInRect:CGRectMake(78, 9, 14, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentRight];
     
-    [@"LO:" drawInRect:CGRectMake(69, 16 + 7, 32, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentLeft];
-    [low drawInRect:CGRectMake(82, 16 + 7, 14, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentRight];
+    [@"LO:" drawInRect:CGRectMake(65, 9 + 7, 32, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentLeft];
+    [low drawInRect:CGRectMake(78, 9 + 7, 14, 7) withFont:font lineBreakMode:UILineBreakModeCharacterWrap alignment:UITextAlignmentRight];
     
     
     // transfer image
