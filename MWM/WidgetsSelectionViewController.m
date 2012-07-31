@@ -56,7 +56,7 @@
 }
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [NSString stringWithFormat:@"Select widgets for row %d", (rowSegCtrl.selectedSegmentIndex + 2)];
+    return [NSString stringWithFormat:@"Select widgets for row %d", (rowSegCtrl.selectedSegmentIndex +1)];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,7 +78,7 @@
     
     NSString *widgetClassName = [appDelegate.allWidgets objectAtIndex:indexPath.row];
     
-    NSString *inRowWidgetName = [layoutDict objectForKey:[NSString stringWithFormat:@"%d3",rowSegCtrl.selectedSegmentIndex + 1]];
+    NSString *inRowWidgetName = [layoutDict objectForKey:[NSString stringWithFormat:@"%d3",rowSegCtrl.selectedSegmentIndex ]];
     if ([inRowWidgetName isEqualToString:widgetClassName]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         //cell.detailTextLabel.text  = [NSString stringWithFormat:@"Displayed on row:%d", rowSegCtrl.selectedSegmentIndex + 1];
@@ -95,20 +95,22 @@
 
 #pragma mark - UITableViewDelegate
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        [[[UIAlertView alloc] initWithTitle:@"Not Available" message:@"This widget cannot be configured into the current row." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-    } else {
+//    if (indexPath.row == 0) {
+//        [[[UIAlertView alloc] initWithTitle:@"Not Available" message:@"This widget cannot be configured into the current row." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+//        [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
+//    } else {
+    NSInteger index=rowSegCtrl.selectedSegmentIndex;
+  
         NSUserDefaults *perfs = [NSUserDefaults standardUserDefaults];
         NSDictionary *layoutDict = [[perfs objectForKey:@"watchLayout"] mutableCopy];
         NSString *widgetClassName = [appDelegate.allWidgets objectAtIndex:indexPath.row];
-        [layoutDict setValue:widgetClassName forKeyPath:[NSString stringWithFormat:@"%d3", rowSegCtrl.selectedSegmentIndex+1]];
+        [layoutDict setValue:widgetClassName forKeyPath:[NSString stringWithFormat:@"%d3", index]];
         [perfs setObject:layoutDict forKey:@"watchLayout"];
         [perfs synchronize];
         
         [tableView reloadData];
-        [delegate widget:widgetClassName configuredAtRow:rowSegCtrl.selectedSegmentIndex+1];
-    }
+        [delegate widget:widgetClassName configuredAtRow:index];
+    //  }
     
 }
 
